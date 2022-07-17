@@ -33,7 +33,7 @@ body {
     display: flex;
 }
 
-.number, .operator, .dot, .equals{
+.number, .operator, .clear, .dot, .equals{
     background-color: lightgray;
     min-width: 24px;
     margin: 2px;
