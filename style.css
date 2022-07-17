@@ -1,0 +1,44 @@
+body {
+    font-size: 24px;
+}
+#calculator{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    width: 140px;
+}
+#display{
+    border-style: solid;
+    color:white;
+    background-color:black;
+    text-align: right;
+    padding-right: 3px;
+}
+#button-container{
+    display: flex;
+}
+#number-container{
+    display: flex;
+    flex-direction: column;
+}
+#operators{
+    display: flex;
+    flex-direction: column;
+}
+#misc{
+    display: flex;
+    flex-direction: column;
+}
+.number-row{
+    display: flex;
+}
+
+.number, .operator, .dot, .equals{
+    background-color: lightgray;
+    min-width: 24px;
+    margin: 2px;
+    padding: 2px;
+}
+.equals{
+    flex-grow: 1;
+}
