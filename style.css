@@ -6,6 +6,7 @@ body {
     flex-direction: column;
     border-style: solid;
     width: 140px;
+    padding: 2px;
 }
 #display{
     border-style: solid;
