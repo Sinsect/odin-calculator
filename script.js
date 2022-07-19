@@ -24,36 +24,55 @@ function operate(operator, num1, num2) {
         return divide(num1, num2);
     }
 }
+//checks if input is one of the 4 usable operators
+function isOperator(input) {
+    return input == '+' || input == '-' || input == '*' || input == '/';
+}
 let display = document.querySelector('#display');
+//updates display with numerical input or .
+function updateDisplay(input) {
+    let displayValue = display.textContent;
+    if (displayValue == '0') {
+        if (!isNaN(input)) {
+            displayValue = input;
+        }
+        else {
+            displayValue += '.';
+        }
+    }                
+    else {
+        if (!isNaN(input)) {
+            displayValue += input;
+        }
+        else if (!displayValue.includes('.')) {
+            displayValue += '.';
+        }
+    }
+    display.textContent = displayValue;
+}
+function clearDisplay() {
+    display.textContent = '0';
+}
 let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener(('click'), () => {
             let buttonPressed = button.id;
-            let displayValue = display.textContent;
             console.log((buttonPressed));
             //when number is pressed
             if (!isNaN(buttonPressed) || buttonPressed == 'dot') {
-                //if display is empty
-                if (displayValue == '0') {
-                    if (!isNaN(buttonPressed)) {
-                        displayValue = buttonPressed;
-                    }
-                    else {
-                        displayValue += '.';
-                    }
-                }
-                else {
-                    if (!isNaN(buttonPressed)) {
-                        displayValue += button.id;
-                    }
-                    else if (!displayValue.includes('.')) {
-                        displayValue += '.';
-                    }
-                }
+                updateDisplay(buttonPressed);
             }
+            //when an operator is pressed
+            else if (isOperator(buttonPressed)) {
+                
+            }
+            //when = is pressed
+            else if (buttonPressed == '=') {
+                
+            }
+            //when c button is pressed
             else if (buttonPressed == 'c') {
-                displayValue = '0';
+                clearDisplay();
             }
-            display.textContent = displayValue;
     });
 });
