@@ -56,9 +56,7 @@ function clearDisplay() {
 let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener(('click'), () => {
-            let buttonPressed = button.id;
-            console.log((buttonPressed));
-            console.log(button.textContent);
+            let buttonPressed = button.textContent;
             //when number is pressed
             if (button.classList.contains('number')) {
                 updateDisplay(buttonPressed);
