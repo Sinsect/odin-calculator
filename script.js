@@ -58,12 +58,13 @@ buttons.forEach((button) => {
     button.addEventListener(('click'), () => {
             let buttonPressed = button.id;
             console.log((buttonPressed));
+            console.log(button.textContent);
             //when number is pressed
-            if (!isNaN(buttonPressed) || buttonPressed == 'dot') {
+            if (button.classList.contains('number')) {
                 updateDisplay(buttonPressed);
             }
             //when an operator is pressed
-            else if (isOperator(buttonPressed)) {
+            else if (button.classList.contains('operator')) {
                 
             }
             //when = is pressed
