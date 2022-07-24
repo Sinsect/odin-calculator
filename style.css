@@ -1,6 +1,9 @@
 body {
     font-size: 24px;
 }
+button:active {
+    filter: brightness(90%);
+}
 #calculator{
     display: flex;
     flex-direction: column;
