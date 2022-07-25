@@ -80,7 +80,7 @@ function calculate() {
     }
     else {
         clearAll();
-        return "You can't do that.";
+        return "Can't do that.";
     }
 }
 let buttons = document.querySelectorAll('button');
