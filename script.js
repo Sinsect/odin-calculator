@@ -26,44 +26,50 @@ function operate(operator, num1, num2) {
 }
 let display = document.querySelector('#display');
 //updates display with numerical input or .
-let startNew = true;
-function updateDisplay(input) {
-    let displayValue = display.textContent;
-    if (displayValue == '0'|| startNew) {
-        if (!isNaN(input)) {
-            displayValue = input;
-        }
-        else {
-            displayValue += '.';
-        }
-        startNew = false;
-    }                
-    else {
-        if (!isNaN(input)) {
-            displayValue += input;
-        }
-        else if (!displayValue.includes('.')) {
-            displayValue += '.';
-        }
-    }
-    display.textContent = displayValue;
+function updateDisplay(input){
+    display.textContent = input;
+}
+function clearDisplay() {
+    display.textContent = '0';
 }
 let storedValue;
-function storeValue() {
-    storedValue = display.textContent;
+function storeValue(value) {
+    storedValue = value;
+}
+function clearValue() {
+    storedValue = null;
 }
 let storedOperator;
 function storeOperator(operator) {
  storedOperator = operator;
 }
-function clearDisplay() {
-    display.textContent = '0';
+function clearOperator() {
+    storedOperator = null;
+}
+let currentValue;
+let startNew = true;
+function processNumber(number) {
+    if (currentValue == '0'|| startNew) {
+        if (!isNaN(number)) {
+            currentValue = number;
+        }
+        else {
+            currentValue += '.';
+        }
+        startNew = false;
+    }                
+    else {
+        if (!isNaN(number)) {
+            currentValue += number;
+        }
+        else if (!currentValue.includes('.')) {
+            currentValue += '.';
+        }
+    }
+    updateDisplay(currentValue);
 }
 function calculate() {
     let currentDisplay = display.textContent;
-    console.log({storedOperator});
-    console.log({storedValue})
-    console.log({currentDisplay});
     display.textContent = operate(storedOperator, storedValue, currentDisplay);
 }
 let buttons = document.querySelectorAll('button');
@@ -72,11 +78,11 @@ buttons.forEach((button) => {
             let buttonPressed = button.textContent;
             //when number is pressed
             if (button.classList.contains('number')) {
-                updateDisplay(buttonPressed);
+                processNumber(buttonPressed);
             }
             //when an operator is pressed
             else if (button.classList.contains('operator')) {
-                storeValue();
+                storeValue(display.textContent);
                 storeOperator(buttonPressed);
                 startNew = true;
             }
@@ -88,6 +94,8 @@ buttons.forEach((button) => {
             //when c button is pressed
             else if (buttonPressed == 'C') {
                 clearDisplay();
+                clearOperator();
+                clearValue();
             }
     });
 });
