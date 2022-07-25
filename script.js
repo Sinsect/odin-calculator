@@ -76,6 +76,7 @@ function processNumber(number) {
 function calculate() {
     let result = operate(storedOperator, storedValue, currentValue);
     if (isFinite(result)) {
+        result = Math.round(result * 100) / 100;
         return result;
     }
     else {
