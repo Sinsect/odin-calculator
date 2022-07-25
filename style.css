@@ -10,6 +10,7 @@ button:active {
     border-style: solid;
     width: 140px;
     padding: 2px;
+    background-color: #EEE;
 }
 #display{
     border-style: solid;
@@ -36,13 +37,22 @@ button:active {
 .number-row{
     display: flex;
 }
-
 .number, .operator, .clear, .equals{
     background-color: lightgray;
     min-width: 24px;
     margin: 2px;
     padding: 2px;
 }
-.equals{
+.number {
+    background-color: #FDF;
+}
+.operator {
+    background-color: #DFF;
+}
+.equals {
+    background-color: #FFD;
     flex-grow: 1;
+}
+.clear {
+    background-color: #DDF;
 }
