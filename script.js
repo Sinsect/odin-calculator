@@ -37,14 +37,19 @@ function storeValue(value) {
     storedValue = value;
 }
 function clearValue() {
-    storedValue = null;
+    storedValue = undefined;
 }
 let storedOperator;
 function storeOperator(operator) {
  storedOperator = operator;
 }
 function clearOperator() {
-    storedOperator = null;
+    storedOperator = undefined;
+}
+function clearAll() {
+    clearDisplay();
+    clearOperator();
+    clearValue();
 }
 let currentValue;
 let startNew = true;
@@ -69,8 +74,14 @@ function processNumber(number) {
     updateDisplay(currentValue);
 }
 function calculate() {
-    let currentDisplay = display.textContent;
-    display.textContent = operate(storedOperator, storedValue, currentDisplay);
+    let result = operate(storedOperator, storedValue, currentValue);
+    if (isFinite(result)) {
+        return result;
+    }
+    else {
+        clearAll();
+        return "You can't do that.";
+    }
 }
 let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
@@ -82,20 +93,23 @@ buttons.forEach((button) => {
             }
             //when an operator is pressed
             else if (button.classList.contains('operator')) {
+                if (storedValue != undefined) {
+                    updateDisplay(calculate());
+                }
                 storeValue(display.textContent);
                 storeOperator(buttonPressed);
                 startNew = true;
             }
             //when = is pressed
             else if (buttonPressed == '=') {
-                calculate();
-                startNew = true;
+                if (storedValue != undefined && storedOperator != undefined){
+                    updateDisplay(calculate());
+                    startNew = true;
+                }
             }
             //when c button is pressed
             else if (buttonPressed == 'C') {
-                clearDisplay();
-                clearOperator();
-                clearValue();
+                clearAll();
             }
     });
 });
