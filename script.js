@@ -96,7 +96,7 @@ buttons.forEach((button) => {
                 if (storedValue != undefined) {
                     updateDisplay(calculate());
                 }
-                storeValue(currentValue);
+                storeValue(display.textContent);
                 storeOperator(buttonPressed);
                 startNew = true;
             }
