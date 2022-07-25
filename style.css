@@ -37,7 +37,7 @@ button:active {
 .number-row{
     display: flex;
 }
-.number, .operator, .clear, .equals{
+.number, .operator, .clear, .equals, .back{
     background-color: lightgray;
     min-width: 24px;
     margin: 2px;
@@ -53,6 +53,6 @@ button:active {
     background-color: #FFD;
     flex-grow: 1;
 }
-.clear {
+.clear, .back {
     background-color: #DDF;
 }

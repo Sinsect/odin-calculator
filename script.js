@@ -52,6 +52,15 @@ function clearAll() {
     clearValue();
 }
 let currentValue;
+function backspace() {
+    if (currentValue.length > 1){
+        currentValue = currentValue.slice(0,-1);
+    }
+    else if(currentValue.length == 1) {
+        currentValue = 0;
+    }
+    updateDisplay(currentValue);
+}
 let startNew = true;
 function processNumber(number) {
     if (currentValue == '0'|| startNew) {
@@ -107,6 +116,10 @@ buttons.forEach((button) => {
                     updateDisplay(calculate());
                     startNew = true;
                 }
+            }
+            //when <- is pressed
+            else if (button.classList.contains('back')) {
+                backspace();
             }
             //when c button is pressed
             else if (buttonPressed == 'C') {
